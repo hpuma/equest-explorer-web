@@ -4,7 +4,6 @@ import pages from "pages";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-
 const { Dashboard, Homepage } = pages;
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
