@@ -1,5 +1,4 @@
 export default class Config {
-
   static getColumns() {
     const columnNames = ["title", "author", "description", "publishedAt"];
     return columnNames.map((colName) => ({
