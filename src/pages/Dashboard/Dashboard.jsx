@@ -1,33 +1,19 @@
 import { useEffect, useState } from "react";
 import "./Dashboard.css";
-import { Table } from "antd";
+
 import EquestInstance from "api/equestserver";
+import TableWidget from "components/TableWidget/TableWidget";
+
 export default function Dashboard() {
-  let [ticker, setTicker] = useState("spy");
-  let [dataSource, setDataSource] = useState([
-    {
-      key: 1,
-      title: "title_val",
-      link: "link_val",
-      timestamp: "timestamp_val",
-      activity: "activity_val"
-    }
-  ]);
+  let [ticker, setTicker] = useState("amzn");
+  let [dataSource, setDataSource] = useState();
   let [sortBy, setSortBy] = useState(null);
 
-  const columnNames = ["title", "link", "timestamp", "activity"];
-  const columns = columnNames.map((colName) => ({
-    title: colName.charAt(0).toUpperCase() + colName.slice(1),
-    dataIndex: colName,
-    key: colName
-  }));
-
   useEffect(() => {
+   
     async function getData() {
-      const tickerData = await EquestInstance.getEverything(ticker, sortBy);
-      const { articles, count } = tickerData;
-
-      if (count !== 0) setDataSource(articles);
+      const { articles, count }  = await EquestInstance.getEverything(ticker, sortBy);
+      if (count) setDataSource(articles);
     }
     getData();
   }, [ticker, sortBy]);
@@ -35,7 +21,7 @@ export default function Dashboard() {
   return (
     <div id="dashboard-container">
       <h1>Dashboard</h1>
-      <Table dataSource={dataSource} columns={columns} />
+      <TableWidget dataSource={dataSource} />
     </div>
   );
 }
