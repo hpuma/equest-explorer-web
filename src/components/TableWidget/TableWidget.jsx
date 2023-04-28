@@ -11,10 +11,10 @@ export default function TableWidget({ updateLoading, ticker, sortBy }) {
 
   useEffect(() => {
     // Make api request on ticker update
-    const getData = () => {
+    const getData = async () => {
       updateLoading(true, 0);
       console.log("SEARCHED TICKER: ", ticker, "✅");
-      const { articles, count } = EquestInstance.getEverything(ticker, sortBy);
+      const { articles, count } = await EquestInstance.getEverything(ticker, sortBy);
       if (count) setDataSource(articles);
       updateLoading(false, 215);
     };
