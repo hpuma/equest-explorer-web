@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./Dashboard.css";
-import TableWidget from "components/TableWidget/TableWidget";
+import TickerWidget from "components/TickerWidget/TickerWidget";
 import SearchWidget from "components/SearchWidget/SearchWidget";
-
+import TableWidget from "components/TableWidget/TableWidget";
+import { Col, Row, Divider } from "antd";
 export default function Dashboard() {
   let [ticker, setTicker] = useState("AMZN");
   let [sortBy, setSortBy] = useState(null);
@@ -20,11 +21,19 @@ export default function Dashboard() {
       setLoading(isLoading);
     }, delay);
   };
-
+  const colSpan = 12;
   return (
     <div id="dashboard-container">
       <h1>Dashboard</h1>
-      <SearchWidget ticker={ticker} loading={loading} onSearch={onSearch} />
+      <Row>
+        <Col span={colSpan}>
+          <TickerWidget ticker={ticker} />
+        </Col>
+        <Col span={colSpan}>
+          <SearchWidget ticker={ticker} loading={loading} onSearch={onSearch} />
+        </Col>
+      </Row>
+      <Divider />
       <TableWidget ticker={ticker} sortBy={sortBy} updateLoading={updateLoading} />
     </div>
   );
