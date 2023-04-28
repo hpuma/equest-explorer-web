@@ -2,8 +2,8 @@ export const dataSourceDef = [
   {
     key: 1,
     title: "title_val",
-    link: "link_val",
-    timestamp: "timestamp_val",
-    activity: "activity_val"
+    author: "author_val",
+    description: "description_val",
+    publishedAt: "publishedAt_val"
   }
 ];

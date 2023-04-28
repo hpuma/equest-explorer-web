@@ -14,10 +14,9 @@ export default function TableWidget({ updateLoading, ticker, sortBy }) {
     const getData = () => {
       updateLoading(true, 0);
       console.log("SEARCHED TICKER: ", ticker, "✅");
-      EquestInstance.getEverything(ticker, sortBy).then(({ articles, count }) => {
-        if (count) setDataSource(articles);
-        updateLoading(false, 215);
-      });
+      const { articles, count } = EquestInstance.getEverything(ticker, sortBy);
+      if (count) setDataSource(articles);
+      updateLoading(false, 215);
     };
 
     getData();
