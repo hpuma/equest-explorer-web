@@ -49,6 +49,14 @@ export class EquestServer {
     const { data } = await this.instance.get("alphav/global-quote", requestParams);
     return data;
   }
+  async getTickerSearch(ticker) {
+    const requestParams = {
+      params: { ticker }
+    };
+
+    const { data } = await this.instance.get("alphav/ticker-search", requestParams);
+    return data;
+  }
 }
 const EquestInstance = new EquestServer(localConfig);
 export default EquestInstance;
