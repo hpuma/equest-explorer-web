@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { Table } from "antd";
 import EquestInstance from "api/equestserver";
 import Config from "./utils/config";
-import * as defaults from "./utils/defaults";
+import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
-const { dataSourceDef } = defaults;
 
 export default function TableWidget({ updateLoading, ticker, sortBy }) {
   let [dataSource, setDataSource] = useState(dataSourceDef);

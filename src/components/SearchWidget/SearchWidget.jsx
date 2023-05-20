@@ -1,23 +1,15 @@
-import { AutoComplete, Input } from "antd";
 import { useState, useEffect } from "react";
+import { AutoComplete, Input } from "antd";
 import EquestInstance from "api/equestserver";
-import * as defaults from "./defaults";
+import { bestMatchesDataDef } from "./defaults";
 
 const { Search } = Input;
-const { bestMatchesDataDef } = defaults;
 
 export default function SearchWidget({ onSearch, ticker, loading }) {
   const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef);
   const [options, setOptions] = useState(null);
 
   useEffect(() => setOptions(createOptionsFromBestMatches()), [bestMatchesData]);
-
-  const tickerSearch = async (value) => {
-    if (!value) return;
-    const { bestMatches } = await EquestInstance.getTickerSearch(value);
-    if (!bestMatches) return;
-    setBestMatches(bestMatches);
-  };
 
   const createOptionsFromBestMatches = () =>
     bestMatchesData.map(({ symbol, name }) => ({
@@ -35,6 +27,14 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
         </div>
       )
     }));
+
+  const tickerSearch = async (value) => {
+    if (!value) return;
+    const { bestMatches } = await EquestInstance.getTickerSearch(value);
+    if (!bestMatches) return;
+    setBestMatches(bestMatches);
+  };
+
   return (
     <AutoComplete
       dropdownMatchSelectWidth={252}
