@@ -41,6 +41,7 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
       style={{ width: 300 }}
       options={options}
       onSearch={tickerSearch}
+      onChange={tickerSearch}
     >
       <Search
         placeholder={ticker}
