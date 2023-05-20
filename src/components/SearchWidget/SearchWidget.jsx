@@ -1,18 +1,25 @@
 import { AutoComplete, Input } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EquestInstance from "api/equestserver";
+import * as defaults from "./defaults";
+
 const { Search } = Input;
+const { bestMatchesDataDef } = defaults;
 
 export default function SearchWidget({ onSearch, ticker, loading }) {
-  const [bestMatchesData, setBestMatches] = useState(null);
+  const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef);
   const [options, setOptions] = useState(null);
+
+  useEffect(() => setOptions(createOptionsFromBestMatches()), [bestMatchesData]);
+
   const tickerSearch = async (value) => {
+    if (!value) return;
     const { bestMatches } = await EquestInstance.getTickerSearch(value);
+    if (!bestMatches) return;
     setBestMatches(bestMatches);
-    setOptions(searchResult());
   };
 
-  const searchResult = () =>
+  const createOptionsFromBestMatches = () =>
     bestMatchesData.map(({ symbol, name }) => ({
       value: symbol,
       label: (
