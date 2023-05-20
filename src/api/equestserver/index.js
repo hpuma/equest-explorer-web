@@ -54,7 +54,7 @@ export class EquestServer {
       params: { ticker }
     };
 
-    const { data } = await this.instance.get("alphav/ticker-search", requestParams);
+    const { data } = await this.instance.get("equest/ticker-search", requestParams);
     return data;
   }
 }

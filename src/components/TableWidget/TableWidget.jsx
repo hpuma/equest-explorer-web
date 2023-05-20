@@ -3,7 +3,7 @@ import { Table } from "antd";
 import EquestInstance from "api/equestserver";
 import Config from "./utils/config";
 import * as defaults from "./utils/defaults";
-
+import { v4 as uuidv4 } from "uuid";
 const { dataSourceDef } = defaults;
 
 export default function TableWidget({ updateLoading, ticker, sortBy }) {
@@ -15,6 +15,7 @@ export default function TableWidget({ updateLoading, ticker, sortBy }) {
       updateLoading(true, 0);
       console.log("SEARCHED TICKER: ", ticker, "✅");
       const { articles, count } = await EquestInstance.getEverything(ticker, sortBy);
+
       if (count) setDataSource(articles);
       updateLoading(false, 215);
     };
@@ -22,5 +23,5 @@ export default function TableWidget({ updateLoading, ticker, sortBy }) {
     getData();
   }, [ticker, sortBy]);
 
-  return <Table dataSource={dataSource} columns={Config.getColumns()} />;
+  return <Table columns={Config.getColumns()} dataSource={dataSource} rowKey={() => uuidv4()} />;
 }

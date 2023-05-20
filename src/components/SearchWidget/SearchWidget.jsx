@@ -7,11 +7,9 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
   const [bestMatchesData, setBestMatches] = useState(null);
   const [options, setOptions] = useState(null);
   const tickerSearch = async (value) => {
-    if (value.length == 3) {
-      const { bestMatches } = await EquestInstance.getTickerSearch(value);
-      setBestMatches(bestMatches);
-      if (bestMatches) setOptions(searchResult());
-    }
+    const { bestMatches } = await EquestInstance.getTickerSearch(value);
+    setBestMatches(bestMatches);
+    setOptions(searchResult());
   };
 
   const searchResult = () =>
