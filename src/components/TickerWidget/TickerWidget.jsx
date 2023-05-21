@@ -16,7 +16,7 @@ export default function TickerWidget({ ticker }) {
 
   return (
     <Descriptions title={ticker} bordered column={2} size="small">
-      <Descriptions.Item label="Price">{quote.change}</Descriptions.Item>
+      <Descriptions.Item label="Price">{quote.price}</Descriptions.Item>
       <Descriptions.Item label="Open">{quote.open}</Descriptions.Item>
       <Descriptions.Item label="Volume">{quote.volume}</Descriptions.Item>
       <Descriptions.Item label="High">{quote.high}</Descriptions.Item>
