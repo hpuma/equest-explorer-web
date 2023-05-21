@@ -3,6 +3,8 @@ import "./Dashboard.css";
 import TickerWidget from "components/TickerWidget/TickerWidget";
 import SearchWidget from "components/SearchWidget/SearchWidget";
 import TableWidget from "components/TableWidget/TableWidget";
+import ChartWidget from "components/ChartWidget/ChartWidget";
+
 import { Col, Row, Divider } from "antd";
 export default function Dashboard() {
   let [ticker, setTicker] = useState("AMZN");
@@ -32,7 +34,9 @@ export default function Dashboard() {
           <SearchWidget ticker={ticker} loading={loading} onSearch={onSearch} />
         </Col>
       </Row>
-      <Divider />
+
+      <ChartWidget ticker={ticker} />
+
       <TableWidget ticker={ticker} updateLoading={updateLoading} />
     </div>
   );
