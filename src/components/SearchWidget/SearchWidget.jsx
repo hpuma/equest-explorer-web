@@ -6,7 +6,7 @@ import { bestMatchesDataDef } from "./defaults";
 const { Search } = Input;
 
 export default function SearchWidget({ onSearch, ticker, loading }) {
-  const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef);
+  const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef(ticker));
   const [options, setOptions] = useState(null);
 
   useEffect(() => setOptions(createOptionsFromBestMatches()), [bestMatchesData]);
@@ -22,7 +22,7 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
           }}
         >
           <span>
-            <b>{symbol}</b>: {name}
+            <b>{symbol}</b>:{name}
           </span>
         </div>
       )
@@ -31,7 +31,6 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
   const tickerSearch = async (value) => {
     if (!value) return;
     const { bestMatches } = await EquestInstance.getTickerSearch(value);
-    if (!bestMatches) return;
     setBestMatches(bestMatches);
   };
 
@@ -40,10 +39,12 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
       dropdownMatchSelectWidth={252}
       style={{ width: 300 }}
       options={options}
-      onSearch={tickerSearch}
       onChange={tickerSearch}
+      defaultActiveFirstOption
+      autoFocus
     >
       <Search
+        onInput={(e) => (e.target.value = e.target.value.toUpperCase())}
         placeholder={ticker}
         enterButton="Search"
         size="large"

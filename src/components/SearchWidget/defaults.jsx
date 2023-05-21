@@ -1,1 +1,3 @@
-export const bestMatchesDataDef = [{ symbol: "SEARCH", name: "TICKER SEARCH NAME" }];
+export const bestMatchesDataDef = (ticker) => [
+  { symbol: ticker, name: "Amazon.com Inc Common Stock" }
+];
