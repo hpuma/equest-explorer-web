@@ -6,7 +6,6 @@ import TableWidget from "components/TableWidget/TableWidget";
 import { Col, Row, Divider } from "antd";
 export default function Dashboard() {
   let [ticker, setTicker] = useState("AMZN");
-  let [sortBy, setSortBy] = useState(null);
   let [loading, setLoading] = useState(false);
 
   // Search non empty search bars only
@@ -34,7 +33,7 @@ export default function Dashboard() {
         </Col>
       </Row>
       <Divider />
-      <TableWidget ticker={ticker} sortBy={sortBy} updateLoading={updateLoading} />
+      <TableWidget ticker={ticker} updateLoading={updateLoading} />
     </div>
   );
 }

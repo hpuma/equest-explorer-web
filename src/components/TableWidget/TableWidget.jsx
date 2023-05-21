@@ -5,7 +5,7 @@ import Config from "./utils/config";
 import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
 
-export default function TableWidget({ updateLoading, ticker, sortBy }) {
+export default function TableWidget({ updateLoading, ticker }) {
   let [dataSource, setDataSource] = useState(dataSourceDef);
 
   useEffect(() => {
@@ -13,14 +13,14 @@ export default function TableWidget({ updateLoading, ticker, sortBy }) {
     const getData = async () => {
       updateLoading(true, 0);
       console.log("SEARCHED TICKER: ", ticker, "✅");
-      const { articles, count } = await EquestInstance.getEverything(ticker, sortBy);
+      const { articles, count } = await EquestInstance.getEverything(ticker);
 
       if (count) setDataSource(articles);
       updateLoading(false, 215);
     };
 
     getData();
-  }, [ticker, sortBy]);
+  }, [ticker]);
 
   return <Table columns={Config.getColumns()} dataSource={dataSource} rowKey={() => uuidv4()} />;
 }
