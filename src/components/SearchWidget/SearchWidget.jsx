@@ -35,24 +35,26 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
   };
 
   return (
-    <AutoComplete
-      dropdownMatchSelectWidth={252}
-      style={{ width: 300 }}
-      options={options}
-      onChange={tickerSearch}
-      defaultActiveFirstOption
-      autoFocus
-    >
-      <Search
-        onInput={(e) => (e.target.value = e.target.value.toUpperCase())}
-        placeholder={ticker}
-        enterButton="Search"
-        size="large"
-        loading={loading}
-        onSearch={onSearch}
-        style={{ width: 400 }}
-        allowClear
-      />
-    </AutoComplete>
+    <>
+      <AutoComplete
+        dropdownMatchSelectWidth={252}
+        style={{ width: "100%" }}
+        options={options}
+        onChange={tickerSearch}
+        defaultActiveFirstOption
+        autoFocus
+      >
+        <Search
+          onInput={(e) => (e.target.value = e.target.value.toUpperCase())}
+          placeholder={ticker}
+          enterButton="Search"
+          size="large"
+          loading={loading}
+          onSearch={onSearch}
+          style={{ width: "100%" }}
+          allowClear
+        />
+      </AutoComplete>
+    </>
   );
 }

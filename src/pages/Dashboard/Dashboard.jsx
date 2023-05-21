@@ -4,9 +4,21 @@ import TickerWidget from "components/TickerWidget/TickerWidget";
 import SearchWidget from "components/SearchWidget/SearchWidget";
 import TableWidget from "components/TableWidget/TableWidget";
 import ChartWidget from "components/ChartWidget/ChartWidget";
+import NavBar from "components/NavBar/NavBar";
 
-import { Col, Row, Divider } from "antd";
+import { Col, Row } from "antd";
 export default function Dashboard() {
+  const BrandComponent = () => {
+    return (
+      <div>
+        <img
+          id="search-widget-equest-logo"
+          src={require("components/SearchWidget/images/SentiSys2.jpg")}
+        />
+      </div>
+    );
+  };
+
   let [ticker, setTicker] = useState("AMZN");
   let [loading, setLoading] = useState(false);
 
@@ -22,21 +34,32 @@ export default function Dashboard() {
       setLoading(isLoading);
     }, delay);
   };
-  const colSpan = 12;
+
   return (
     <div id="dashboard-container">
-      <h1>Dashboard</h1>
       <Row>
-        <Col span={colSpan}>
+        <Col span={2}>
+          <BrandComponent />
+        </Col>
+        <Col span={2}>TM</Col>
+        <Col span={8}>
+          <SearchWidget />
+        </Col>
+        <Col span={8}> </Col>
+        <Col span={4}>
+          <NavBar />
+        </Col>
+      </Row>
+      <Row>
+        {/*Ticker */}
+        <Col span={4}>
           <TickerWidget ticker={ticker} />
         </Col>
-        <Col span={colSpan}>
-          <SearchWidget ticker={ticker} loading={loading} onSearch={onSearch} />
-        </Col>
+        {/*COL SPACING */}
+        <Col span={20}>SPACING</Col>
       </Row>
 
       <ChartWidget ticker={ticker} />
-
       <TableWidget ticker={ticker} updateLoading={updateLoading} />
     </div>
   );

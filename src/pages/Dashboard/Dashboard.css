@@ -2,3 +2,12 @@
   width: 100%;
   height: 100%;
 }
+
+#search-widget-equest-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  min-width: 100%;
+  height: 46px;
+}
