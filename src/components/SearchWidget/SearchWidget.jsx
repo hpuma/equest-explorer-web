@@ -5,7 +5,7 @@ import { bestMatchesDataDef } from "./defaults";
 
 const { Search } = Input;
 
-export default function SearchWidget({ onSearch, ticker, loading }) {
+export default function SearchWidget({ onSearch, ticker }) {
   const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef(ticker));
   const [options, setOptions] = useState(null);
 
@@ -49,7 +49,6 @@ export default function SearchWidget({ onSearch, ticker, loading }) {
           placeholder={ticker}
           enterButton="Search"
           size="large"
-          loading={loading}
           onSearch={onSearch}
           style={{ width: "100%" }}
           allowClear
