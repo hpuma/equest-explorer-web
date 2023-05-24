@@ -17,7 +17,9 @@ export default function TableWidget({ ticker }) {
       if (count) setDataSource(articles);
     };
 
-    getData();
+    return () => {
+      getData();
+    };
   }, [ticker]);
 
   return <Table columns={Config.getColumns()} dataSource={dataSource} rowKey={() => uuidv4()} />;

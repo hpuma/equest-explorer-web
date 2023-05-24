@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { DashboardOutlined, LoginOutlined, HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, DashboardOutlined, SettingOutlined, LoginOutlined } from "@ant-design/icons";
 
 import { Menu } from "antd";
 
@@ -14,6 +14,11 @@ const items = [
     label: "Dashboard",
     key: "dashboard",
     icon: <DashboardOutlined />
+  },
+  {
+    label: "Settings",
+    key: "settings",
+    icon: <SettingOutlined />
   },
   {
     label: "Log In",
