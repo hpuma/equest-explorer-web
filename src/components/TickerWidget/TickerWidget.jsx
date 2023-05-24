@@ -1,13 +1,26 @@
 import { useEffect, useState } from "react";
-import { Descriptions } from "antd";
+import { Card, Typography } from "antd";
 import "./TickerWidget.css";
 import EquestInstance from "api/equestserver";
-export default function TickerWidget({ ticker }) {
-  const [quote, setTickerQuote] = useState({});
+import { tickerWidgetDef } from "./defaults";
 
+const { Title } = Typography;
+
+export default function TickerWidget({ ticker }) {
+  const [quote, setTickerQuote] = useState(tickerWidgetDef);
+  const gridStyle = {
+    textAlign: "left",
+    width: "14.28%",
+    padding: 1
+  };
+  const titleStyle = {
+    textAlign: "center"
+  };
   useEffect(() => {
     const getData = async () => {
       const quoteData = await EquestInstance.getGlobalQuote(ticker);
+
+      if (quoteData.message) return;
       setTickerQuote(quoteData);
     };
 
@@ -15,14 +28,17 @@ export default function TickerWidget({ ticker }) {
   }, [ticker]);
 
   return (
-    <Descriptions title={ticker} bordered column={4} size="small">
-      <Descriptions.Item label="Price">{quote.price}</Descriptions.Item>
-      <Descriptions.Item label="Open">{quote.open}</Descriptions.Item>
-      <Descriptions.Item label="Volume">{quote.volume}</Descriptions.Item>
-      <Descriptions.Item label="High">{quote.high}</Descriptions.Item>
-      <Descriptions.Item label="Previous Close">{quote.previousClose}</Descriptions.Item>
-      <Descriptions.Item label="Low">{quote.low}</Descriptions.Item>
-      <Descriptions.Item label="Last Updated">{quote.latestTradingDay}</Descriptions.Item>
-    </Descriptions>
+    <Card style={titleStyle} title={<Title level={2}>{ticker}</Title>}>
+      {["price", "open", "volume", "high", "previousClose", "low", "latestTradingDay"].map(
+        function (field) {
+          return (
+            <Card.Grid style={gridStyle} key={field}>
+              <b>{field}: </b> <br />
+              {quote[field]}
+            </Card.Grid>
+          );
+        }
+      )}
+    </Card>
   );
 }
