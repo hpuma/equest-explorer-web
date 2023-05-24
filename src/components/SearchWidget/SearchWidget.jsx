@@ -5,11 +5,14 @@ import { bestMatchesDataDef } from "./defaults";
 
 const { Search } = Input;
 
-export default function SearchWidget({ onSearch, ticker }) {
+export default function SearchWidget({ onSearch, ticker, searchRef }) {
   const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef(ticker));
   const [options, setOptions] = useState(null);
 
-  useEffect(() => setOptions(createOptionsFromBestMatches()), [bestMatchesData]);
+  useEffect(() => {
+    setOptions(createOptionsFromBestMatches());
+    searchRef.current.focus();
+  }, [bestMatchesData]);
 
   const createOptionsFromBestMatches = () =>
     bestMatchesData.map(({ symbol, name }) => ({
@@ -42,7 +45,6 @@ export default function SearchWidget({ onSearch, ticker }) {
         options={options}
         onChange={tickerSearch}
         defaultActiveFirstOption
-        autoFocus
       >
         <Search
           onInput={(e) => (e.target.value = e.target.value.toUpperCase())}
@@ -52,6 +54,7 @@ export default function SearchWidget({ onSearch, ticker }) {
           onSearch={onSearch}
           style={{ width: "100%" }}
           allowClear
+          ref={searchRef}
         />
       </AutoComplete>
     </>
