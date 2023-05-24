@@ -18,12 +18,14 @@ const items = [
   {
     label: "Settings",
     key: "settings",
-    icon: <SettingOutlined />
-  },
-  {
-    label: "Log In",
-    key: "login",
-    icon: <LoginOutlined />
+    icon: <SettingOutlined />,
+    children: [
+      {
+        label: "Log In",
+        key: "login",
+        icon: <LoginOutlined />
+      }
+    ]
   }
 ];
 
@@ -31,7 +33,7 @@ export default function NavBar() {
   const [current, setCurrent] = useState("mail");
 
   const onClick = (e) => {
-    console.log("click ", e);
+    console.log("Click ✅", e.key);
     setCurrent(e.key);
   };
 
