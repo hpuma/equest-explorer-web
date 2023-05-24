@@ -22,5 +22,12 @@ export default function TableWidget({ ticker }) {
     };
   }, [ticker]);
 
-  return <Table columns={Config.getColumns()} dataSource={dataSource} rowKey={() => uuidv4()} />;
+  return (
+    <Table
+      columns={Config.getColumns()}
+      dataSource={dataSource}
+      rowKey={() => uuidv4()}
+      size="small"
+    />
+  );
 }
