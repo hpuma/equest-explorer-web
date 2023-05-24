@@ -37,5 +37,7 @@ export default function NavBar() {
     setCurrent(e.key);
   };
 
-  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+  return (
+    <Menu onClick={onClick} selectedKeys={[current]} items={items} mode="horizontal" theme="dark" />
+  );
 }
