@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import pages from "pages";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-
+import { ConfigProvider } from "antd";
 const { Dashboard, Homepage } = pages;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Dashboard />
-  </React.StrictMode>
+  <ConfigProvider>
+    <React.StrictMode>
+      <Dashboard />
+    </React.StrictMode>
+  </ConfigProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
