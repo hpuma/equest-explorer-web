@@ -3,10 +3,11 @@ import "./Dashboard.css";
 import TickerWidget from "components/TickerWidget/TickerWidget";
 import SearchWidget from "components/SearchWidget/SearchWidget";
 import TableWidget from "components/TableWidget/TableWidget";
-import ChartWidget from "components/ChartWidget/ChartWidget";
+// import ChartWidget from "components/ChartWidget/ChartWidget";
 import Brand from "components/Brand/Brand";
 import NavBar from "components/NavBar/NavBar";
-import { ConfigProvider, Modal, Col, Row, theme } from "antd";
+import Config from "./utils/config";
+import { ConfigProvider, Modal, Col, Row } from "antd";
 
 export default function Dashboard() {
   const searchRef = useRef(null);
@@ -24,7 +25,7 @@ export default function Dashboard() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    document.body.style.backgroundColor = isDarkMode ? "#141414" : "#fff";
+    document.body.style.backgroundColor = Config.getTheme(isDarkMode)["backgroundColor"];
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -49,12 +50,8 @@ export default function Dashboard() {
   const emptyColSpan = tickerWidgetSpan + 4;
   const navBarSpan = 24 - (tickerWidgetSpan + emptyColSpan);
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: isDarkMode ? theme.darkAlgorithm : theme.lightAlgorithm
-      }}
-    >
-      <div id="dashboard-container" style={{ backgroundColor: isDarkMode ? "#141414" : "#fff" }}>
+    <ConfigProvider theme={Config.getThemeAlgorithm(isDarkMode)}>
+      <div id="dashboard-container">
         <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
           <SearchWidget ticker={ticker} searchRef={searchRef} onSearch={onSearch} />
         </Modal>
@@ -73,7 +70,7 @@ export default function Dashboard() {
           </Col>
         </Row>
 
-        <ChartWidget ticker={ticker} isDarkMode={isDarkMode} />
+        {/* <ChartWidget ticker={ticker} isDarkMode={isDarkMode} /> */}
         <TableWidget ticker={ticker} />
       </div>
     </ConfigProvider>
