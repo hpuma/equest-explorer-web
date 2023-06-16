@@ -20,4 +20,10 @@ export default class Config {
       return false;
     }
   }
+  static getGridSpans() {
+    const tickerWidgetSpan = 8;
+    const emptyColSpan = tickerWidgetSpan + 4;
+    const navBarSpan = 24 - (tickerWidgetSpan + emptyColSpan);
+    return { tickerWidgetSpan, emptyColSpan, navBarSpan };
+  }
 }

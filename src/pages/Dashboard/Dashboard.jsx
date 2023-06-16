@@ -45,9 +45,7 @@ export default function Dashboard() {
   };
 
   // Spans
-  const tickerWidgetSpan = 8;
-  const emptyColSpan = tickerWidgetSpan + 4;
-  const navBarSpan = 24 - (tickerWidgetSpan + emptyColSpan);
+  const { tickerWidgetSpan, emptyColSpan, navBarSpan } = Config.getGridSpans();
   return (
     <ConfigProvider theme={Config.getThemeAlgorithm(isDarkMode)}>
       <div id="dashboard-container">
