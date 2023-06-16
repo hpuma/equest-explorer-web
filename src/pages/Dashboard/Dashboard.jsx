@@ -14,14 +14,12 @@ export default function Dashboard() {
   const [ticker, setTicker] = useState("AMZN");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
+
   useEffect(() => {
     const handleKeyDown = ({ keyCode }) => {
-      if (keyCode === 13) setIsModalOpen(false); // Enter Pressed
-      else if (keyCode >= 65 && keyCode <= 90) {
-        // Alphabetical is pressed
-        searchRef.current?.focus();
-        setIsModalOpen(true);
-      }
+      const enterPressed = Config.isEnterPressed(keyCode);
+      setIsModalOpen(enterPressed);
+      if (enterPressed) searchRef.current?.focus();
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -32,19 +30,20 @@ export default function Dashboard() {
   }, [isDarkMode]);
 
   // Handlers
+  const cancelModal = () => {
+    setIsModalOpen(false);
+  };
   const onSearch = (value) => {
-    if (typeof value === "string" && value.length > 0) {
+    const textIsValid = Config.isTextValid(value);
+    if (textIsValid) {
       setTicker(value);
       setIsModalOpen(false);
-    } else if (!value) console.log("SEARCHED TICKER: EMPTY ❌");
+    }
   };
   const updateDarkMode = () => {
     setDarkMode(!isDarkMode);
   };
 
-  const cancelModal = () => {
-    setIsModalOpen(false);
-  };
   // Spans
   const tickerWidgetSpan = 8;
   const emptyColSpan = tickerWidgetSpan + 4;
