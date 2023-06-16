@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 let tvScriptLoadingPromise;
-export default function ChartWidget({ ticker }) {
+export default function ChartWidget({ ticker, isDarkMode }) {
   const onLoadScriptRef = useRef();
 
   useEffect(() => {
@@ -27,9 +27,9 @@ export default function ChartWidget({ ticker }) {
         new window.TradingView.widget({
           width: "100%",
           height: 610,
-          symbol: `NASDAQ:${ticker}`,
+          symbol: ticker,
           timezone: "America/New_York",
-          theme: "dark",
+          theme: isDarkMode ? "dark" : "light",
           style: "1",
           locale: "en",
           toolbar_bg: "#f1f3f6",
@@ -45,7 +45,7 @@ export default function ChartWidget({ ticker }) {
         });
       }
     }
-  }, []);
+  }, [isDarkMode, ticker]);
 
   return (
     <div className="tradingview-widget-container">
