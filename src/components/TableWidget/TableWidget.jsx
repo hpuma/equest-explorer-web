@@ -11,8 +11,8 @@ export default function TableWidget({ ticker }) {
   useEffect(() => {
     // Make api request on ticker update
     const getData = async () => {
-      console.log("SEARCHED TICKER: ", ticker, "✅");
-      const { articles, count } = await EquestInstance.getEverything(ticker);
+      console.log("SEARCHED NEWS RECORDS: ", ticker, "✅");
+      const { articles, count } = await EquestInstance.getNewsRecords(ticker);
 
       if (count) setDataSource(articles);
     };
