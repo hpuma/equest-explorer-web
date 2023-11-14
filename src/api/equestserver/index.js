@@ -1,13 +1,16 @@
-import Axios, { AxiosResponse, AxiosRequestConfig } from "axios";
+import Axios from "axios";
 import config from "configs";
 const { localConfig } = config;
 
 export class EquestServer {
   constructor(configuration) {
-    const { baseURL = "" } = configuration;
+    const { baseURL = "", equestApiKey = "" } = configuration;
 
     this.instance = Axios.create({
-      baseURL
+      baseURL,
+      headers: {
+        "x-api-key": equestApiKey
+      }
     });
   }
 
@@ -55,6 +58,15 @@ export class EquestServer {
     };
 
     const { data } = await this.instance.get("equest/ticker-search", requestParams);
+    return data;
+  }
+
+  async getNewsRecords(ticker) {
+    const requestParams = {
+      params: { ticker }
+    };
+
+    const { data } = await this.instance.get("equest/news-records", requestParams);
     return data;
   }
 }
