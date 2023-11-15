@@ -13,7 +13,7 @@ export class EquestServer {
       }
     });
   }
-
+  // Note: DEPRECATION SOON, need to apply query filters to getNewsRecords(), INACTIVE atm
   async getEverything(ticker, sortBy = null) {
     const date = new Date();
     const yesterday = date.getDate() - 1;
@@ -32,6 +32,7 @@ export class EquestServer {
     return data;
   }
 
+  // Note: DEPRECATION SOON, Get intraday price action mapped to news, INACTIVE atm
   async getIntraday(ticker) {
     const requestParams = {
       params: {
@@ -44,6 +45,7 @@ export class EquestServer {
     return data;
   }
 
+  // Get current ticker price data, current or after market close, ACTIVE atm
   async getGlobalQuote(ticker) {
     const requestParams = {
       params: { ticker }
@@ -52,6 +54,7 @@ export class EquestServer {
     const { data } = await this.instance.get("alphav/global-quote", requestParams);
     return data;
   }
+  // Get ticker symbols stored in db, ACTIVE atm
   async getTickerSearch(ticker) {
     const requestParams = {
       params: { ticker }
@@ -61,6 +64,7 @@ export class EquestServer {
     return data;
   }
 
+  // Get all stored news records in db, ACTIVE atm
   async getNewsRecords(ticker) {
     const requestParams = {
       params: { ticker }
