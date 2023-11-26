@@ -53,7 +53,7 @@ export default function Dashboard() {
           <SearchWidget ticker={ticker} searchRef={searchRef} onSearch={onSearch} />
         </Modal>
 
-        <Brand />
+        <Brand isDarkMode={isDarkMode} />
         {/* Widgets */}
         <Row>
           <Col span={tickerWidgetSpan}>
