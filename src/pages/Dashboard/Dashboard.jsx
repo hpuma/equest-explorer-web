@@ -3,7 +3,7 @@ import "./Dashboard.css";
 import TickerWidget from "components/TickerWidget/TickerWidget";
 import SearchWidget from "components/SearchWidget/SearchWidget";
 import TableWidget from "components/TableWidget/TableWidget";
-// import ChartWidget from "components/ChartWidget/ChartWidget";
+import ChartWidget from "components/ChartWidget/ChartWidget";
 import Brand from "components/Brand/Brand";
 import NavBar from "components/NavBar/NavBar";
 import Config from "./utils/config";
@@ -14,6 +14,7 @@ export default function Dashboard() {
   const [ticker, setTicker] = useState("AMZN");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
+  const [isChartEnabled, setChartEnabled] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = ({ keyCode }) => {
@@ -44,6 +45,10 @@ export default function Dashboard() {
     setDarkMode(!isDarkMode);
   };
 
+  const enableChart = () => {
+    setChartEnabled(!isChartEnabled);
+  };
+
   // Spans
   const { tickerWidgetSpan, emptyColSpan, navBarSpan } = Config.getGridSpans();
   return (
@@ -60,14 +65,13 @@ export default function Dashboard() {
             <TickerWidget ticker={ticker} />
           </Col>
 
-          <Col span={emptyColSpan}></Col>
-
+          <Col span={emptyColSpan} />
           <Col span={navBarSpan}>
-            <NavBar updateDarkMode={updateDarkMode} />
+            <NavBar updateDarkMode={updateDarkMode} enableChart={enableChart} />
           </Col>
         </Row>
 
-        {/* <ChartWidget ticker={ticker} isDarkMode={isDarkMode} /> */}
+        {isChartEnabled ? <ChartWidget ticker={ticker} isDarkMode={isDarkMode} /> : null}
         <TableWidget ticker={ticker} />
       </div>
     </ConfigProvider>
