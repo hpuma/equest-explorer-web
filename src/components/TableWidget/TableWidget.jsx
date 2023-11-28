@@ -6,7 +6,7 @@ import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
 
 export default function TableWidget({ ticker }) {
-  let [dataSource, setDataSource] = useState(dataSourceDef);
+  const [dataSource, setDataSource] = useState(dataSourceDef);
 
   useEffect(() => {
     // Make api request on ticker update

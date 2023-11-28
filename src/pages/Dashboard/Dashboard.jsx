@@ -17,10 +17,11 @@ export default function Dashboard() {
   const [isChartEnabled, setChartEnabled] = useState(false);
 
   useEffect(() => {
-    const handleKeyDown = ({ keyCode }) => {
-      const enterPressed = Config.isEnterPressed(keyCode);
-      setIsModalOpen(enterPressed);
-      if (enterPressed) searchRef.current?.focus();
+    const handleKeyDown = ({ keyCode, key }) => {
+      const isAlphabetChar = Config.isAlphabetChar(keyCode);
+      const openModalIfNotOpen = isAlphabetChar && !isModalOpen;
+      searchRef.current?.focus();
+      if (openModalIfNotOpen) setIsModalOpen(isAlphabetChar);
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -28,7 +29,7 @@ export default function Dashboard() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isDarkMode]);
+  }, [isDarkMode, ticker]);
 
   // Handlers
   const cancelModal = () => {
@@ -37,8 +38,8 @@ export default function Dashboard() {
   const onSearch = (value) => {
     const textIsValid = Config.isTextValid(value);
     if (textIsValid) {
-      setTicker(value);
       setIsModalOpen(false);
+      setTicker(value);
     }
   };
   const updateDarkMode = () => {
@@ -55,7 +56,12 @@ export default function Dashboard() {
     <ConfigProvider theme={Config.getThemeAlgorithm(isDarkMode)}>
       <div id="dashboard-container">
         <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
-          <SearchWidget ticker={ticker} searchRef={searchRef} onSearch={onSearch} />
+          <SearchWidget
+            ticker={ticker}
+            isModalOpen={isModalOpen}
+            searchRef={searchRef}
+            onSearch={onSearch}
+          />
         </Modal>
 
         <Brand isDarkMode={isDarkMode} />
@@ -72,7 +78,7 @@ export default function Dashboard() {
         </Row>
 
         {isChartEnabled ? <ChartWidget ticker={ticker} isDarkMode={isDarkMode} /> : null}
-        <TableWidget ticker={ticker} />
+        <TableWidget ticker={ticker} key={ticker} />
       </div>
     </ConfigProvider>
   );

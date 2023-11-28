@@ -7,7 +7,7 @@ export default class Config {
     return { algorithm: isDarkMode ? theme.darkAlgorithm : theme.lightAlgorithm };
   }
 
-  static isEnterPressed(keyCode) {
+  static isAlphabetChar(keyCode) {
     if (keyCode === 13) return false;
     else if (keyCode >= 65 && keyCode <= 90) return true;
   }
