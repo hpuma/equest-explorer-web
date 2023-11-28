@@ -11,7 +11,7 @@ export default function SearchWidget({ onSearch, ticker, searchRef }) {
 
   useEffect(() => {
     setOptions(createOptionsFromBestMatches());
-    searchRef.current.focus();
+    searchRef.current?.focus();
   }, [bestMatchesData]);
 
   const createOptionsFromBestMatches = () =>
@@ -31,6 +31,10 @@ export default function SearchWidget({ onSearch, ticker, searchRef }) {
       )
     }));
 
+  const setAndFormatInput = (e) => {
+    e.target.value = e.target.value.toUpperCase();
+  };
+
   const tickerSearch = async (value) => {
     if (!value) return;
     const { bestMatches } = await EquestInstance.getTickerSearch(value);
@@ -47,7 +51,7 @@ export default function SearchWidget({ onSearch, ticker, searchRef }) {
         defaultActiveFirstOption
       >
         <Search
-          onInput={(e) => (e.target.value = e.target.value.toUpperCase())}
+          onInput={setAndFormatInput}
           placeholder={ticker}
           enterButton="Search"
           size="large"

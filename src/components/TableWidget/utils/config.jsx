@@ -1,6 +1,6 @@
 export default class Config {
   static getColumns() {
-    const columnNames = ["title", "author", "description"];
+    const columnNames = ["title", "author", "description", "newsSource"];
     const mappedColumns = columnNames.map((colName) => ({
       title: colName.charAt(0).toUpperCase() + colName.slice(1),
       dataIndex: colName,
