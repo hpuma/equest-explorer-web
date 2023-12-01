@@ -28,6 +28,7 @@ export default function TableWidget({ ticker }) {
       dataSource={dataSource}
       rowKey={() => uuidv4()}
       size="small"
+      pagination={{ pageSize: 50, position: "topRight" }}
     />
   );
 }

@@ -17,7 +17,7 @@ export default function Dashboard() {
   const [isChartEnabled, setChartEnabled] = useState(false);
 
   useEffect(() => {
-    const handleKeyDown = ({ keyCode, key }) => {
+    const handleKeyDown = ({ keyCode }) => {
       const isAlphabetChar = Config.isAlphabetChar(keyCode);
       const openModalIfNotOpen = isAlphabetChar && !isModalOpen;
       searchRef.current?.focus();
