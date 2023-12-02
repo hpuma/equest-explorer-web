@@ -1,3 +1,11 @@
+import { Tag } from "antd";
+
+const newsSourceColorMap = {
+  news: "red",
+  marketaux: "blue",
+  alphav: "green"
+};
+
 export default class Config {
   static getColumns() {
     const columnNames = ["title", "author", "description", "newsSource"];
@@ -8,20 +16,43 @@ export default class Config {
       defaultSortOrder: "descend",
       sorter: (a, b) => String(a).localeCompare(b.name)
     }));
-    mappedColumns[1] = {
-      ...mappedColumns[1],
-      filters: [
-        {
-          text: "investors.com",
-          value: "investors.com"
-        },
-        {
-          text: "benzinga.com",
-          value: "benzinga.com"
-        }
-      ],
-      onFilter: (value, record) => String(record.author).includes(value)
+
+    const newsColumn = 3;
+    const newsFilters = [
+      {
+        text: "alphav",
+        value: "alphav"
+      },
+      {
+        text: "marketaux",
+        value: "marketaux"
+      },
+      {
+        text: "news",
+        value: "news"
+      }
+    ];
+    mappedColumns[newsColumn] = {
+      ...mappedColumns[newsColumn],
+      ...Config.constructColumnFilters(newsFilters, "newsSource"),
+      // Configure seperate labels for newsSource
+      render: (_, { newsSource }) => {
+        const color = newsSourceColorMap[newsSource];
+
+        return (
+          <Tag color={color} key={newsSource}>
+            {newsSource}
+          </Tag>
+        );
+      }
     };
+
     return mappedColumns;
+  }
+  static constructColumnFilters(filters, filterField) {
+    return {
+      filters,
+      onFilter: (value, record) => String(record[filterField]).includes(value)
+    };
   }
 }
