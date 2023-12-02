@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { Tag } from "antd";
 
 const newsSourceColorMap = {
@@ -6,63 +5,58 @@ const newsSourceColorMap = {
   marketaux: "blue",
   alphav: "green"
 };
-const columnNames = ["title", "newsSource", "url", "timestamp"];
-export default class Config {
-  static getColumns() {
-    let newsFilters = ["alphav", "marketaux", "news"];
 
-    return columnNames.map((columnName) => {
-      const columnConfig = {
+const columnConfigs = {
+  newsSource: {
+    filters: ["alphav", "marketaux", "news"].map((configName) => ({
+      text: configName,
+      value: configName
+    })),
+    onFilter: (value, record) => String(record["newsSource"]).includes(value),
+    render: (_, { newsSource }) => {
+      const color = newsSourceColorMap[newsSource];
+      return (
+        <Tag color={color} key={newsSource}>
+          {newsSource}
+        </Tag>
+      );
+    },
+    title: "API"
+  },
+  url: {
+    render: (_, { url }) => {
+      const hostName = url ? new URL(url).hostname : "NO URL";
+
+      return (
+        <a href={url} target={"_blank"} rel="noreferrer">
+          <b>{hostName}</b>
+        </a>
+      );
+    }
+  },
+  timestamp: {
+    title: "Date Published",
+    render: (_, { timestamp: { date = "", time = "" } = {} }) => `${date}T${time}`
+  },
+  createdAt: {
+    title: "Date Found"
+  }
+};
+
+export default class Config {
+  static columnNames = ["title", "newsSource", "url", "timestamp", "createdAt"];
+  static getColumns() {
+    return Config.columnNames.map((columnName) => {
+      const remainingColumnConfig = columnConfigs[columnName] ?? {};
+
+      return {
         title: columnName.charAt(0).toUpperCase() + columnName.slice(1),
         dataIndex: columnName,
         key: columnName,
         defaultSortOrder: "descend",
-        sorter: (a, b) => String(a).localeCompare(b.name)
+        sorter: (a, b) => String(a).localeCompare(b.name),
+        ...remainingColumnConfig
       };
-      let additionalColumnConfig = {};
-      switch (columnName) {
-        case "newsSource":
-          newsFilters = newsFilters.map((configName) => ({ text: configName, value: configName }));
-          additionalColumnConfig = {
-            ...Config.constructColumnFilters(newsFilters, "newsSource"),
-            render: Config.createNewsSourceColumn
-          };
-          break;
-        case "url":
-          additionalColumnConfig = {
-            render: Config.createUrlColumn
-          };
-          break;
-      }
-
-      return { ...columnConfig, ...additionalColumnConfig };
     });
-  }
-
-  static constructColumnFilters(filters, columnName) {
-    return {
-      filters,
-      onFilter: (value, record) => String(record[columnName]).includes(value)
-    };
-  }
-
-  static createNewsSourceColumn(_, { newsSource }) {
-    const color = newsSourceColorMap[newsSource];
-    return (
-      <Tag color={color} key={newsSource}>
-        {newsSource}
-      </Tag>
-    );
-  }
-
-  static createUrlColumn(_, { url }) {
-    let hostname = null;
-    if (url) hostname = new URL(url).hostname;
-
-    return (
-      <a href={url} target={"_blank"} rel="noreferrer">
-        <b>{hostname ?? "link"}</b>
-      </a>
-    );
   }
 }
