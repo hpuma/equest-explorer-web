@@ -20,7 +20,7 @@ export default function TickerWidget({ ticker }) {
     const getData = async () => {
       const quoteData = await EquestInstance.getGlobalQuote(ticker);
 
-      if (quoteData.message) return;
+      if (quoteData.message) return setTickerQuote(tickerWidgetDef);
       setTickerQuote(quoteData);
     };
 
