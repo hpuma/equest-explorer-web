@@ -6,16 +6,18 @@ import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
 
 export default function TableWidget({ ticker }) {
-  const [dataSource, setDataSource] = useState(dataSourceDef);
+  const [dataSource, setDataSource] = useState(null);
+
+  // Make api request on ticker update
+  const getData = async () => {
+    console.log("SEARCHED NEWS RECORDS: ", ticker, "✅");
+    const { articles, count } = await EquestInstance.getNewsRecords(ticker);
+    const newDataSource = count ? articles : dataSourceDef;
+    setDataSource(newDataSource);
+  };
 
   useEffect(() => {
-    // Make api request on ticker update
-    const getData = async () => {
-      console.log("SEARCHED NEWS RECORDS: ", ticker, "✅");
-      const { articles, count } = await EquestInstance.getNewsRecords(ticker);
-
-      if (count) setDataSource(articles);
-    };
+    if (!dataSource) getData();
 
     return () => {
       getData();
