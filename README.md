@@ -1,5 +1,17 @@
 # Getting Started with Equest
+
+### Introduction
+This is the front-end for the equest platform
 ![Equest Frontend](https://github.com/hpuma/equestrian-explorer-web-v2/blob/main/equest.gif)
+
+### Features
+- Stock Quote for ticker
+- Enable/Disable Stock Chart via Trading View
+- Theme changes (Dark v Light)
+- News sources ingested from News API, Alpha Vantage, and Marketaux
+- Ticker search (On key type)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
