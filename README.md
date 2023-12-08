@@ -1,7 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+# Getting Started with Equest
+![Equest Frontend](https://github.com/hpuma/equestrian-explorer-web-v2/blob/main/equest.gif)
 ## Available Scripts
 
 In the project directory, you can run:
