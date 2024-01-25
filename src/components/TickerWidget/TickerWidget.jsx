@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card, Typography } from "antd";
 import "./TickerWidget.css";
-import EquestInstance from "api/equestserver";
+import EquestInstance from "../../api/equestserver";
 import { tickerWidgetDef } from "./defaults";
-
+import React from "react";
 const { Title } = Typography;
 
 export default function TickerWidget({ ticker }) {

@@ -1,4 +1,5 @@
 import "./Brand.css";
+import React from "react";
 export default function Brand({ isDarkMode }) {
   return (
     <div>
@@ -6,8 +7,8 @@ export default function Brand({ isDarkMode }) {
         id="branding-logo"
         src={
           isDarkMode
-            ? require("components/SearchWidget/images/Sentisys3.jpg")
-            : require("components/SearchWidget/images/SentiSys2.jpg")
+            ? "components/SearchWidget/images/Sentisys3.jpg"
+            : "components/SearchWidget/images/SentiSys2.jpg"
         }
       />
     </div>

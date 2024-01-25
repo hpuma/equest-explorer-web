@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Table } from "antd";
-import EquestInstance from "api/equestserver";
+import EquestInstance from "../../api/equestserver";
 import Config from "./utils/config";
 import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
-
+import React from "react";
 export default function TableWidget({ ticker }) {
   const [dataSource, setDataSource] = useState(null);
 

@@ -1,5 +1,5 @@
 import Axios from "axios";
-import config from "configs";
+import config from "../../configs";
 const { localConfig } = config;
 
 export class EquestServer {

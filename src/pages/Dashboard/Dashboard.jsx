@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import "./Dashboard.css";
-import TickerWidget from "components/TickerWidget/TickerWidget";
-import SearchWidget from "components/SearchWidget/SearchWidget";
-import TableWidget from "components/TableWidget/TableWidget";
-import ChartWidget from "components/ChartWidget/ChartWidget";
-import Brand from "components/Brand/Brand";
-import NavBar from "components/NavBar/NavBar";
+import TickerWidget from "../../components/TickerWidget/TickerWidget";
+import SearchWidget from "../../components/SearchWidget/SearchWidget";
+import TableWidget from "../../components/TableWidget/TableWidget";
+import ChartWidget from "../../components/ChartWidget/ChartWidget";
+import Brand from "../../components/Brand/Brand";
+import NavBar from "../../components/NavBar/NavBar";
 import Config from "./utils/config";
+import React from "react";
 import { ConfigProvider, Modal, Col, Row } from "antd";
 
 export default function Dashboard() {

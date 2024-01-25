@@ -1,5 +1,5 @@
 import { Tag } from "antd";
-
+import React from "react";
 const newsSourceColorMap = {
   news: "red",
   marketaux: "blue",
