@@ -7,7 +7,7 @@
 .DS_STORE
 # testing
 /coverage
-
+.yarn
 # production
 /build
 .env
