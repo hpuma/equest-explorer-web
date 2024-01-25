@@ -7,7 +7,7 @@ export default function Brand({ isDarkMode }) {
         src={
           isDarkMode
             ? require("components/SearchWidget/images/Sentisys3.jpg")
-            : require("components/SearchWidget/images/Sentisys2.jpg")
+            : require("components/SearchWidget/images/SentiSys2.jpg")
         }
       />
     </div>
