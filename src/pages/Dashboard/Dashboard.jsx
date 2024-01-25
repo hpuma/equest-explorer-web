@@ -26,15 +26,11 @@ export default function Dashboard() {
 
     window.addEventListener("keydown", handleKeyDown);
     document.body.style.backgroundColor = Config.getTheme(isDarkMode)["backgroundColor"];
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isDarkMode, ticker]);
 
   // Handlers
-  const cancelModal = () => {
-    setIsModalOpen(false);
-  };
+  const cancelModal = () => setIsModalOpen(false);
   const onSearch = (value) => {
     const textIsValid = Config.isTextValid(value);
     if (textIsValid) {
@@ -42,13 +38,8 @@ export default function Dashboard() {
       setTicker(value);
     }
   };
-  const updateDarkMode = () => {
-    setDarkMode(!isDarkMode);
-  };
-
-  const enableChart = () => {
-    setChartEnabled(!isChartEnabled);
-  };
+  const updateDarkMode = () => setDarkMode(!isDarkMode);
+  const enableChart = () => setChartEnabled(!isChartEnabled);
 
   // Spans
   const { tickerWidgetSpan, emptyColSpan, navBarSpan } = Config.getGridSpans();
