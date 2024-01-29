@@ -7,5 +7,9 @@ export default defineConfig({
     babel({
       jsx: "react"
     })
-  ]
+  ],
+  server: {
+    open: true,
+    port: 3000
+  }
 });
