@@ -1,13 +1,12 @@
-import { useState, useEffect, useRef } from "react";
-import "./Dashboard.css";
-import SearchWidget from "../../components/SearchWidget/SearchWidget";
-import Brand from "../../components/Brand/Brand";
-import NavBar from "../../components/NavBar/NavBar";
-import Config from "./utils/config";
 import React from "react";
-import { CollapsableSection } from "./subcomponents";
+import Components from "../../components";
+import Config from "./utils/config";
+import { useState, useEffect, useRef } from "react";
 import { ConfigProvider, Modal, Col, Row } from "antd";
+import { CollapsableSection } from "./subcomponents";
+import "./Dashboard.css";
 
+const { SearchWidget, Brand, NavBar } = Components;
 export default function Dashboard() {
   const searchRef = useRef(null);
   const [ticker, setTicker] = useState("AMZN");

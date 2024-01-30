@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { HomeOutlined, DashboardOutlined, SettingOutlined, LoginOutlined } from "@ant-design/icons";
-
 import { Menu, Switch } from "antd";
 
 export default function NavBar({ updateDarkMode }) {

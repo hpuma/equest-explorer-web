@@ -1,9 +1,8 @@
-import { Row, Col, Card, Divider, Collapse } from "antd";
 import React from "react";
-import TableWidget from "../../components/TableWidget/TableWidget";
-import ChartWidget from "../../components/ChartWidget/ChartWidget";
-import TickerWidget from "../../components/TickerWidget/TickerWidget";
+import Components from "../../components";
+import { Row, Col, Card, Divider, Collapse } from "antd";
 
+const { TableWidget, ChartWidget, TickerWidget } = Components;
 function PreviewField({ label = null, content = null }) {
   const formattedLabel = label == null ? null : <b>{label}:</b>;
   const formattedContent = label == "Source" ? <a href={content}>Link</a> : content;

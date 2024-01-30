@@ -1,8 +1,8 @@
+import React from "react";
+import EquestInstance from "../../api/equestserver";
 import { useState, useEffect } from "react";
 import { AutoComplete, Input } from "antd";
-import EquestInstance from "../../api/equestserver";
 import { bestMatchesDataDef } from "./defaults";
-import React from "react";
 
 const { Search } = Input;
 export default function SearchWidget({ onSearch, ticker, searchRef }) {
