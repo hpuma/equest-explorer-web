@@ -14,39 +14,34 @@ const columnConfigs = {
       value: configName
     })),
     onFilter: (value, record) => String(record["newsSource"]).includes(value),
-    render: (_, { newsSource }) => {
-      const color = newsSourceColorMap[newsSource];
-      return (
-        <Tag color={color} key={newsSource}>
-          {newsSource}
-        </Tag>
-      );
-    },
-    title: "API"
+    render: (_, { newsSource }) => (
+      <Tag color={newsSourceColorMap[newsSource]} key={newsSource}>
+        {newsSource}
+      </Tag>
+    ),
+    title: "API",
+    width: "13%"
   },
   url: {
-    render: (_, { url }) => {
-      const hostName = url ? new URL(url).hostname : "NO URL";
-
-      return (
-        <a href={url} target={"_blank"} rel="noreferrer">
-          <b>{hostName}</b>
-        </a>
-      );
-    }
+    render: (_, { url }) => (
+      <a href={url} target={"_blank"} rel="noreferrer">
+        <b>{url ? new URL(url).hostname : "NO URL"}</b>
+      </a>
+    ),
+    width: "14%"
   },
   timestamp: {
     title: "Date Published",
-    render: (_, { timestamp: { date = "", time = "" } = {} }) => `${date}T${time}`
+    render: (_, { timestamp: { date = "", time = "" } = {} }) => `${date}T${time}`,
+    width: "14%"
   },
   createdAt: {
-    title: "Date Found"
+    title: "Date Found",
+    width: "14%"
   },
   title: {
     title: "Title",
-    render: (_, { title }) => {
-      return <p style={{ cursor: "pointer" }}>{title}</p>;
-    }
+    render: (_, { title }) => <p style={{ cursor: "pointer" }}>{title}</p>
   }
 };
 

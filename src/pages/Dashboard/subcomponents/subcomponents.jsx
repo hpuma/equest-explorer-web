@@ -63,14 +63,14 @@ export function CollapsableSection({
       label: "Table",
       children: (
         <Row>
-          <Col span={18}>
+          <Col span={14}>
             <TableWidget
               ticker={ticker}
               key={ticker}
               getTableRow={(newsRecord) => setRecord(newsRecord)}
             />
           </Col>
-          <Col span={6}>
+          <Col span={10}>
             <NewsPreview record={record} />
           </Col>
         </Row>
