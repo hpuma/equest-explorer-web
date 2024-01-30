@@ -40,6 +40,12 @@ const columnConfigs = {
   },
   createdAt: {
     title: "Date Found"
+  },
+  title: {
+    title: "Title",
+    render: (_, { title }) => {
+      return <p style={{ cursor: "pointer" }}>{title}</p>;
+    }
   }
 };
 

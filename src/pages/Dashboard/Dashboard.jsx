@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import "./Dashboard.css";
-import TickerWidget from "../../components/TickerWidget/TickerWidget";
 import SearchWidget from "../../components/SearchWidget/SearchWidget";
-import TableWidget from "../../components/TableWidget/TableWidget";
-import ChartWidget from "../../components/ChartWidget/ChartWidget";
 import Brand from "../../components/Brand/Brand";
 import NavBar from "../../components/NavBar/NavBar";
 import Config from "./utils/config";
 import React from "react";
+import { CollapsableSection } from "./subcomponents";
 import { ConfigProvider, Modal, Col, Row } from "antd";
 
 export default function Dashboard() {
@@ -15,7 +13,7 @@ export default function Dashboard() {
   const [ticker, setTicker] = useState("AMZN");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
-  const [isChartEnabled, setChartEnabled] = useState(false);
+  const [record, setRecord] = useState({});
 
   useEffect(() => {
     const handleKeyDown = ({ keyCode }) => {
@@ -34,16 +32,13 @@ export default function Dashboard() {
   const cancelModal = () => setIsModalOpen(false);
   const onSearch = (value) => {
     const textIsValid = Config.isTextValid(value);
-    if (textIsValid) {
-      setIsModalOpen(false);
-      setTicker(value);
-    }
+    if (textIsValid) setIsModalOpen(false), setTicker(value);
   };
   const updateDarkMode = () => setDarkMode(!isDarkMode);
-  const enableChart = () => setChartEnabled(!isChartEnabled);
 
   // Spans
   const { tickerWidgetSpan, emptyColSpan, navBarSpan } = Config.getGridSpans();
+
   return (
     <ConfigProvider theme={Config.getThemeAlgorithm(isDarkMode)}>
       <div id="dashboard-container">
@@ -55,22 +50,25 @@ export default function Dashboard() {
             onSearch={onSearch}
           />
         </Modal>
-
         <Brand isDarkMode={isDarkMode} />
         {/* Widgets */}
         <Row>
           <Col span={tickerWidgetSpan}>
-            <TickerWidget ticker={ticker} />
+            <CollapsableSection widgets={"small"} ticker={ticker} isDarkMode={isDarkMode} />
           </Col>
-
           <Col span={emptyColSpan} />
           <Col span={navBarSpan}>
-            <NavBar updateDarkMode={updateDarkMode} enableChart={enableChart} />
+            <NavBar updateDarkMode={updateDarkMode} />
           </Col>
         </Row>
 
-        {isChartEnabled ? <ChartWidget ticker={ticker} isDarkMode={isDarkMode} /> : null}
-        <TableWidget ticker={ticker} key={ticker} />
+        <CollapsableSection
+          widgets={"large"}
+          ticker={ticker}
+          isDarkMode={isDarkMode}
+          setRecord={setRecord}
+          record={record}
+        />
       </div>
     </ConfigProvider>
   );
