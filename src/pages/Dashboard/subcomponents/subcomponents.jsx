@@ -1,8 +1,10 @@
 import React from "react";
-import Components from "../../components";
-import { Row, Col, Card, Divider, Collapse } from "antd";
+import Components from "../../../components";
+import { Row, Col, Card, Divider, Collapse, Typography } from "antd";
 import "./subcomponents.css";
+
 const { TableWidget, ChartWidget, TickerWidget } = Components;
+const { Title } = Typography;
 function PreviewField({ label = null, content = null }) {
   const formattedLabel = label == null ? null : <b>{label}:</b>;
   const formattedContent = label == "Source" ? <a href={content}>Link</a> : content;
@@ -34,12 +36,19 @@ export function CollapsableSection({
   ticker = "",
   isDarkMode = false,
   record = {},
-  setRecord
+  setRecord,
+  tickerDescription = ""
 }) {
   const smallWidgets = [
     {
       key: "0",
-      label: "Quote",
+      label: (
+        <>
+          <Title level={2}>
+            {ticker} - {tickerDescription}
+          </Title>
+        </>
+      ),
       children: <TickerWidget ticker={ticker} />
     }
   ];
@@ -69,11 +78,12 @@ export function CollapsableSection({
     }
   ];
   const items = widgets == "small" ? smallWidgets : largeWidgets;
-  const defaultActiveKey = widgets == "small" ? [] : ["1", "2"];
+  const size = widgets == "small" ? "small" : "large";
+  const defaultActiveKey = widgets == "small" ? ["0"] : ["2"];
 
   return (
     <Collapse
-      size={"small"}
+      size={size}
       expandIconPosition="end"
       items={items}
       defaultActiveKey={defaultActiveKey}

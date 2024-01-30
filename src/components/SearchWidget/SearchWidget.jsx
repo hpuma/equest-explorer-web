@@ -55,7 +55,9 @@ export default function SearchWidget({ onSearch, ticker, searchRef }) {
           placeholder={ticker}
           enterButton="Search"
           size="large"
-          onSearch={onSearch}
+          onSearch={(value) => {
+            onSearch({ value, name: bestMatchesData[0].name });
+          }}
           style={{ width: "100%" }}
           allowClear
           ref={searchRef}
