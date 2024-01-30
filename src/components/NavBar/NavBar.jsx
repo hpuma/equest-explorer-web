@@ -4,7 +4,7 @@ import { HomeOutlined, DashboardOutlined, SettingOutlined, LoginOutlined } from 
 
 import { Menu, Switch } from "antd";
 
-export default function NavBar({ updateDarkMode, enableChart }) {
+export default function NavBar({ updateDarkMode }) {
   const [current, setCurrent] = useState("mail");
 
   const items = [
@@ -27,11 +27,6 @@ export default function NavBar({ updateDarkMode, enableChart }) {
           label: "Theme",
           key: "theme",
           icon: <Switch onChange={updateDarkMode} size="small" />
-        },
-        {
-          label: "Chart",
-          key: "chart",
-          icon: <Switch onChange={enableChart} size="small" />
         },
         {
           label: "Log In",

@@ -3,8 +3,8 @@ import { AutoComplete, Input } from "antd";
 import EquestInstance from "../../api/equestserver";
 import { bestMatchesDataDef } from "./defaults";
 import React from "react";
-const { Search } = Input;
 
+const { Search } = Input;
 export default function SearchWidget({ onSearch, ticker, searchRef }) {
   const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef(ticker));
   const [options, setOptions] = useState(null);
@@ -44,7 +44,7 @@ export default function SearchWidget({ onSearch, ticker, searchRef }) {
   return (
     <>
       <AutoComplete
-        dropdownMatchSelectWidth={252}
+        popupMatchSelectWidth={252}
         style={{ width: "100%" }}
         options={options}
         onChange={tickerSearch}
