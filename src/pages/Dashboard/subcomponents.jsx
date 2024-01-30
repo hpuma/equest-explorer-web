@@ -1,7 +1,7 @@
 import React from "react";
 import Components from "../../components";
 import { Row, Col, Card, Divider, Collapse } from "antd";
-
+import "./subcomponents.css";
 const { TableWidget, ChartWidget, TickerWidget } = Components;
 function PreviewField({ label = null, content = null }) {
   const formattedLabel = label == null ? null : <b>{label}:</b>;
