@@ -22,7 +22,7 @@ export default function Dashboard() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    document.body.style.backgroundColor = Config.getTheme(isDarkMode)["backgroundColor"];
+    document.body.style.backgroundColor = Config.getBackgroundColor(isDarkMode);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isDarkMode, ticker]);
 
