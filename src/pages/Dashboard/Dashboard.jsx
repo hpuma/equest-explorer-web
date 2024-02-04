@@ -4,7 +4,6 @@ import Config from "./config";
 import { useState, useEffect, useRef } from "react";
 import { ConfigProvider, Modal, Col, Row } from "antd";
 import { CollapsableSection } from "./subcomponents/subcomponents";
-import "./Dashboard.css";
 
 const { SearchWidget, Brand, NavBar } = Components;
 export default function Dashboard() {
@@ -13,7 +12,6 @@ export default function Dashboard() {
   const [tickerDescription, setTickerDescription] = useState("Amazon.com Inc.");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
-  const [record, setRecord] = useState({});
 
   useEffect(() => {
     const handleKeyDown = ({ keyCode }) => {
@@ -31,8 +29,8 @@ export default function Dashboard() {
   // Handlers
   const cancelModal = () => setIsModalOpen(false);
   const onSearch = ({ value, name }) => {
-    const textIsValid = Config.isTextValid(value);
-    if (textIsValid) setIsModalOpen(false), setTicker(value), setTickerDescription(name);
+    if (Config.isTextValid(value))
+      setIsModalOpen(false), setTicker(value), setTickerDescription(name);
   };
   const updateDarkMode = () => setDarkMode(!isDarkMode);
 
@@ -41,7 +39,7 @@ export default function Dashboard() {
 
   return (
     <ConfigProvider theme={Config.getThemeAlgorithm(isDarkMode)}>
-      <div id="dashboard-container">
+      <>
         <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
           <SearchWidget
             ticker={ticker}
@@ -50,7 +48,6 @@ export default function Dashboard() {
             onSearch={onSearch}
           />
         </Modal>
-
         {/* Widgets */}
         <Row>
           <Col span={tickerWidgetSpan}>
@@ -66,15 +63,8 @@ export default function Dashboard() {
             <NavBar updateDarkMode={updateDarkMode} />
           </Col>
         </Row>
-
-        <CollapsableSection
-          widgets={"large"}
-          ticker={ticker}
-          isDarkMode={isDarkMode}
-          setRecord={setRecord}
-          record={record}
-        />
-      </div>
+        <CollapsableSection widgets={"large"} ticker={ticker} isDarkMode={isDarkMode} />
+      </>
     </ConfigProvider>
   );
 }

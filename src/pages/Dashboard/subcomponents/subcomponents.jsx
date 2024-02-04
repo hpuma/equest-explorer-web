@@ -10,12 +10,11 @@ export function CollapsableSection({
   widgets = "",
   ticker = "",
   isDarkMode = false,
-  record = {},
-  setRecord,
   tickerDescription = ""
 }) {
   const [isResizing, setResizing] = useState(false);
   const [dividerPosition, setDividerPosition] = useState(60);
+  const [record, setRecord] = useState({});
 
   useEffect(() => {
     const handleMouseMove = (e) =>
