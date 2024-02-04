@@ -1,6 +1,6 @@
 import React from "react";
 import Components from "../../components";
-import Config from "./utils/config";
+import Config from "./config";
 import { useState, useEffect, useRef } from "react";
 import { ConfigProvider, Modal, Col, Row } from "antd";
 import { CollapsableSection } from "./subcomponents/subcomponents";

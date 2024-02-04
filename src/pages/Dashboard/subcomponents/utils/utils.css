@@ -1,0 +1,36 @@
+.resizable-container {
+  display: flex;
+  height: 100%;
+}
+
+.component-left,
+.component-right {
+  overflow: auto;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.resizable-divider {
+  cursor: ew-resize;
+  width: 10px;
+  background-color: #ddd;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.resizable-divider.resizing {
+  background-color: #000000;
+}
+.resizable-dots {
+  margin-top: 40em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resizable-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #333; /* Color of the dots */
+  margin: 3px 0; /* Adjust spacing between dots */
+}

@@ -1,36 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Components from "../../../components";
-import { Row, Col, Card, Divider, Collapse, Typography } from "antd";
+import { Collapse, Typography } from "antd";
+import { ChartSection, getCollapseAttributes } from "./utils/utils";
 import "./subcomponents.css";
 
 const { TableWidget, ChartWidget, TickerWidget } = Components;
 const { Title } = Typography;
-function PreviewField({ label = null, content = null }) {
-  const formattedLabel = label == null ? null : <b>{label}:</b>;
-  const formattedContent = label == "Source" ? <a href={content}>Link</a> : content;
-
-  return (
-    <>
-      {formattedLabel} {formattedContent} <br />
-    </>
-  );
-}
-
-function NewsPreview({
-  record: { title, author, url, urlToImage, content, description, updatedAt }
-}) {
-  return (
-    <Card hoverable title={title} cover={<img src={urlToImage} />}>
-      <PreviewField label={"Author"} content={author} />
-      <PreviewField label={"Source"} content={url} />
-      <PreviewField label={"Updated At"} content={updatedAt} />
-      <Divider />
-      <PreviewField content={description} />
-      <PreviewField content={content} />
-    </Card>
-  );
-}
-
 export function CollapsableSection({
   widgets = "",
   ticker = "",
@@ -39,15 +14,29 @@ export function CollapsableSection({
   setRecord,
   tickerDescription = ""
 }) {
+  const [isResizing, setResizing] = useState(false);
+  const [dividerPosition, setDividerPosition] = useState(60);
+
+  useEffect(() => {
+    const handleMouseMove = (e) =>
+      isResizing ? setDividerPosition((e.clientX / window.innerWidth) * 100) : () => {};
+    const handleMouseUp = () => setResizing(false);
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [isResizing]);
+
   const smallWidgets = [
     {
       key: "0",
       label: (
-        <>
-          <Title level={2}>
-            {ticker} - {tickerDescription}
-          </Title>
-        </>
+        <Title level={2}>
+          {ticker} - {tickerDescription}
+        </Title>
       ),
       children: <TickerWidget ticker={ticker} />
     }
@@ -62,24 +51,28 @@ export function CollapsableSection({
       key: "2",
       label: "Table",
       children: (
-        <Row>
-          <Col span={14}>
+        <ChartSection
+          ticker={ticker}
+          dividerPosition={dividerPosition}
+          setRecord={setRecord}
+          setResizing={setResizing}
+          record={record}
+          tableWidget={
             <TableWidget
               ticker={ticker}
               key={ticker}
               getTableRow={(newsRecord) => setRecord(newsRecord)}
             />
-          </Col>
-          <Col span={10}>
-            <NewsPreview record={record} />
-          </Col>
-        </Row>
+          }
+        />
       )
     }
   ];
-  const items = widgets == "small" ? smallWidgets : largeWidgets;
-  const size = widgets == "small" ? "small" : "large";
-  const defaultActiveKey = widgets == "small" ? ["0"] : ["2"];
+
+  const { items, size, defaultActiveKey } = getCollapseAttributes(widgets, [
+    smallWidgets,
+    largeWidgets
+  ]);
 
   return (
     <Collapse
