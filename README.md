@@ -6,9 +6,11 @@ Front-end for the equest platform
 ## Features
 - Stock Quote for ticker
 - Enable/Disable Stock Chart via Trading View
-- Theme changes (Dark v Light)
-- News sources ingested from News API, Alpha Vantage, and Marketaux
+- Theme changes (Dark vs Light)
+- News sources ingested from News API, Alpha Vantage, and Marketaux, Bing, NewsData, TheNewsAPI
 - Ticker search (On key type)
+- News preview viewer with vertical adjustment
+- Responsive table that allows filtering and sorting
 ![Equest Frontend](https://github.com/hpuma/equestrian-explorer-web-v2/blob/main/equest.gif)
 ## Technologies
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
