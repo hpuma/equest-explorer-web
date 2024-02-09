@@ -13,7 +13,7 @@ Front-end for the equest platform
 - Ticker search (On key type)
 - News preview viewer with vertical adjustment
 - Responsive table that allows filtering and sorting
-  ![Equest Frontend](https://github.com/hpuma/equestrian-explorer-web/blob/main/equest.gif)
+  ![Equest Frontend](https://github.com/hpuma/equest-explorer-web/blob/main/equest.gif)
 
 ## Technologies
 

@@ -1,0 +1,56 @@
+/* Format table to habe narrower rows for both light and dark mode  */
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-table-wrapper
+  .ant-table.ant-table-small
+  .ant-table-title,
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-table-wrapper
+  .ant-table.ant-table-small
+  .ant-table-footer,
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-table-wrapper
+  .ant-table.ant-table-small
+  .ant-table-cell,
+:where(
+    .css-dev-only-do-not-override-1rqnfsa,
+    .css-dev-only-do-not-override-jop9zq
+  ).ant-table-wrapper
+  .ant-table.ant-table-small
+  .ant-table-thead
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-table-wrapper
+  .ant-table.ant-table-small
+  .ant-table-tbody
+  > tr
+  > th,
+:where(
+    .css-dev-only-do-not-override-1rqnfsa,
+    .css-dev-only-do-not-override-jop9zq
+  ).ant-table-wrapper
+  .ant-table.ant-table-small
+  .ant-table-tbody
+  > tr
+  > td,
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-table-wrapper
+  .ant-table.ant-table-small
+  tfoot
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-table-wrapper
+  .ant-table.ant-table-small
+  tfoot
+  > tr
+  > td {
+  padding: 0px;
+}
+:where(
+    .css-dev-only-do-not-override-1rqnfsa,
+    .css-dev-only-do-not-override-jop9zq
+  ).ant-table-wrapper
+  .ant-table {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 14p;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 0px 0px 0 0;
+}

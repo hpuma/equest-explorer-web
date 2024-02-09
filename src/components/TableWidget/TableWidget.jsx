@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Table } from "antd";
 import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
+import "./TableWidget.css";
 
 export default function TableWidget({ ticker = "", getTableRow }) {
   const [dataSource, setDataSource] = useState(null);

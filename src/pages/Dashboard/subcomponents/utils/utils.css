@@ -3,10 +3,11 @@
   height: 100%;
 }
 
+/* Update border color to be non existent */
 .component-left,
 .component-right {
   overflow: auto;
-  border: 1px solid #ccc;
+  border: 0px;
   box-sizing: border-box;
 }
 
@@ -33,4 +34,24 @@
   height: 5px;
   background-color: #333; /* Color of the dots */
   margin: 3px 0; /* Adjust spacing between dots */
+}
+/* Increase space for widget inside collapse component */
+:where(
+    .css-dev-only-do-not-override-1rqnfsa,
+    .css-dev-only-do-not-override-jop9zq
+  ).ant-collapse-large
+  > .ant-collapse-item
+  > .ant-collapse-header {
+  padding: 0px;
+  padding-inline-start: 1px;
+}
+
+:where(
+    .css-dev-only-do-not-override-1rqnfsa,
+    .css-dev-only-do-not-override-jop9zq
+  ).ant-collapse-large
+  > .ant-collapse-item
+  > .ant-collapse-content
+  > .ant-collapse-content-box {
+  padding: 0px;
 }

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Card, Typography, Row } from "antd";
 import { tickerWidgetDef } from "./defaults";
 import { CreateColumn } from "./subcomponent";
-import "./TickerWidget.css";
 
 const { Title } = Typography;
 export default function TickerWidget({ ticker }) {
