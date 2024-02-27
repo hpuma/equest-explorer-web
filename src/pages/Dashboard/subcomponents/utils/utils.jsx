@@ -42,7 +42,13 @@ export function ChartSection({ dividerPosition, setResizing, record, tableWidget
           <div className="resizable-dot"></div>
         </div>
       </div>
-      <div className="component-right" style={{ width: `${100 - dividerPosition}%` }}>
+      <div
+        className="component-right"
+        style={{
+          left: "61%",
+          width: `${99 - dividerPosition}%`
+        }}
+      >
         <NewsPreview record={record} />
       </div>
     </div>

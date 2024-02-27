@@ -13,3 +13,9 @@
     font-size: 15px;
   }
 }
+
+.ant-table-cell.ant-table-column-sort:hover {
+  text-decoration: underline;
+  transition: text-decoration 0.2s ease-in-out;
+  font-weight: bold;
+}
