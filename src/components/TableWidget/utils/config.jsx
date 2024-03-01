@@ -2,9 +2,13 @@ import React from "react";
 import { Tag } from "antd";
 
 const newsSourceColorMap = {
+  alphav: "green",
   news: "red",
+  newsdata: "purple",
+  gnews: "pink",
+  thenews: "cyan",
   marketaux: "blue",
-  alphav: "green"
+  bing: "orange"
 };
 
 const columnConfigs = {
