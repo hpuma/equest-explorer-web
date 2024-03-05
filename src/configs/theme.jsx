@@ -1,9 +1,9 @@
 import { theme } from "antd";
-export default class Config {
+export default class Theme {
   static getBackgroundColor(isDarkMode) {
     return isDarkMode ? "#141414" : "#fff";
   }
-  static getThemeAlgorithm(isDarkMode) {
+  static getAlgorithm(isDarkMode) {
     return { algorithm: isDarkMode ? theme.darkAlgorithm : theme.lightAlgorithm };
   }
 
@@ -19,11 +19,5 @@ export default class Config {
       console.log("SEARCHED TICKER: EMPTY ❌");
       return false;
     }
-  }
-  static getGridSpans() {
-    const tickerWidgetSpan = 8;
-    const emptyColSpan = tickerWidgetSpan + 4;
-    const navBarSpan = 24 - (tickerWidgetSpan + emptyColSpan);
-    return { tickerWidgetSpan, emptyColSpan, navBarSpan };
   }
 }

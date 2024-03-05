@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import { HomeOutlined, DashboardOutlined, SettingOutlined, LoginOutlined } from "@ant-design/icons";
+import React, { useState, useContext } from "react";
+import {
+  AreaChartOutlined,
+  DashboardOutlined,
+  SettingOutlined,
+  LoginOutlined
+} from "@ant-design/icons";
+
 import { Menu, Switch } from "antd";
-
-export default function NavBar({ updateDarkMode }) {
+import { Link } from "react-router-dom";
+import { ThemeContext } from "../../index";
+export default function NavBar() {
   const [current, setCurrent] = useState("mail");
-
+  const { isDarkMode, setDarkMode } = useContext(ThemeContext);
   const items = [
     {
-      label: "Home",
-      key: "home",
-      icon: <HomeOutlined />
+      label: "Analytics",
+      key: "analytics",
+      icon: <Link to="/analytics">{<AreaChartOutlined />}</Link>
     },
     {
       label: "Dashboard",
       key: "dashboard",
-      icon: <DashboardOutlined />
+      icon: <Link to="/">{<DashboardOutlined />}</Link>
     },
     {
       label: "Settings",
@@ -24,7 +31,7 @@ export default function NavBar({ updateDarkMode }) {
         {
           label: "Theme",
           key: "theme",
-          icon: <Switch onChange={updateDarkMode} size="small" />
+          icon: <Switch onChange={setDarkMode} checked={isDarkMode} size="small" />
         },
         {
           label: "Log In",
