@@ -6,8 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 export const ThemeContext = React.createContext({ isDarkMode: false });
+
 function App() {
   const [isDarkMode, setDarkMode] = useState(ThemeContext.isDarkMode);
+
   return (
     <ThemeContext.Provider value={{ isDarkMode, setDarkMode }}>
       <BrowserRouter>

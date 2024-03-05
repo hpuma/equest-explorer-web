@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EquestInstance from "../../api/equestserver";
-import { useState, useEffect } from "react";
 import { AutoComplete, Input } from "antd";
 import { bestMatchesDataDef } from "./defaults";
 

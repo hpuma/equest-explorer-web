@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EquestInstance from "../../api/equestserver";
-import { useEffect, useState } from "react";
-import { Card, Typography, Row } from "antd";
+import { Card, Row } from "antd";
 import { tickerWidgetDef } from "./defaults";
 import { CreateColumn } from "./subcomponent";
 
-const { Title } = Typography;
 export default function TickerWidget({ ticker }) {
   const [quote, setTickerQuote] = useState(tickerWidgetDef);
 

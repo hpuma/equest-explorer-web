@@ -7,11 +7,11 @@ import { CollapsableSection } from "./subcomponents/subcomponents";
 
 const { SearchWidget, Brand, NavBar } = Components;
 export function Dashboard() {
-  const searchRef = useRef(null);
+  const { isDarkMode } = useContext(ThemeContext);
   const [ticker, setTicker] = useState("AMZN");
-  const [tickerDescription, setTickerDescription] = useState("Amazon.com Inc.");
+  const [tickerDescription, setTickerDescription] = useState("Amazon.com, Inc.");
+  const searchRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isDarkMode, setDarkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const handleKeyDown = ({ keyCode }) => {
@@ -35,35 +35,33 @@ export function Dashboard() {
 
   // Spans
   return (
-    <ThemeContext.Provider value={{ isDarkMode, setDarkMode }}>
-      <ConfigProvider theme={Theme.getAlgorithm(isDarkMode)}>
-        <>
-          <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
-            <SearchWidget
+    <ConfigProvider theme={Theme.getAlgorithm(isDarkMode)}>
+      <>
+        <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
+          <SearchWidget
+            ticker={ticker}
+            isModalOpen={isModalOpen}
+            searchRef={searchRef}
+            onSearch={onSearch}
+          />
+        </Modal>
+        {/* Widgets */}
+        <Row>
+          <Col span={12}>
+            <CollapsableSection
+              widgets={"small"}
               ticker={ticker}
-              isModalOpen={isModalOpen}
-              searchRef={searchRef}
-              onSearch={onSearch}
+              isDarkMode={isDarkMode}
+              tickerDescription={tickerDescription}
             />
-          </Modal>
-          {/* Widgets */}
-          <Row>
-            <Col span={12}>
-              <CollapsableSection
-                widgets={"small"}
-                ticker={ticker}
-                isDarkMode={isDarkMode}
-                tickerDescription={tickerDescription}
-              />
-            </Col>
+          </Col>
 
-            <Col span={12}>
-              <NavBar />
-            </Col>
-          </Row>
-          <CollapsableSection widgets={"large"} ticker={ticker} isDarkMode={isDarkMode} />
-        </>
-      </ConfigProvider>
-    </ThemeContext.Provider>
+          <Col span={12}>
+            <NavBar />
+          </Col>
+        </Row>
+        <CollapsableSection widgets={"large"} ticker={ticker} isDarkMode={isDarkMode} />
+      </>
+    </ConfigProvider>
   );
 }

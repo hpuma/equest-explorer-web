@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EquestInstance from "../../api/equestserver";
 import Config from "./utils/config";
-import { useEffect, useState } from "react";
 import { Table } from "antd";
 import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
