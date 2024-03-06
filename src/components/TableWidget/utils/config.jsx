@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-
+import { formatLabel } from "../../../global/utils";
 const newsSourceColorMap = {
   alphav: "green",
   news: "red",
@@ -56,7 +56,7 @@ export default class Config {
       const remainingColumnConfig = columnConfigs[columnName] ?? {};
 
       return {
-        title: columnName.charAt(0).toUpperCase() + columnName.slice(1),
+        title: formatLabel(columnName),
         dataIndex: columnName,
         key: columnName,
         defaultSortOrder: "descend",

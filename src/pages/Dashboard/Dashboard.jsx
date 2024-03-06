@@ -22,7 +22,6 @@ export function Dashboard() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    document.body.style.backgroundColor = Theme.getBackgroundColor(isDarkMode);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isDarkMode, ticker]);
 
