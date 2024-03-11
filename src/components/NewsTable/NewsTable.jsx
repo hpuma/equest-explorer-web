@@ -4,9 +4,9 @@ import Config from "./utils/config";
 import { Table } from "antd";
 import { dataSourceDef } from "./utils/defaults";
 import { v4 as uuidv4 } from "uuid";
-import "./TableWidget.css";
+import "./NewsTable.css";
 
-export default function TableWidget({ ticker = "", getTableRow }) {
+export default function NewsTable({ ticker = "", getTableRow }) {
   const [dataSource, setDataSource] = useState(null);
   const getData = async () => {
     console.log("SEARCHED NEWS RECORDS: ", ticker, "✅");

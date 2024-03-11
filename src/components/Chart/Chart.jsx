@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 let tvScriptLoadingPromise;
 
-export default function ChartWidget({ ticker, isDarkMode }) {
+export default function Chart({ ticker, isDarkMode }) {
   const onLoadScriptRef = useRef();
 
   useEffect(() => {

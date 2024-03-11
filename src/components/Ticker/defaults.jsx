@@ -1,4 +1,4 @@
-export const tickerWidgetDef = {
+export const tickerDef = {
   symbol: "DEFAULT_NO_SYMBOL",
   open: "222.22",
   high: "333.33",

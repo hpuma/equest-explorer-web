@@ -5,7 +5,7 @@ import { ThemeContext } from "../../index";
 import { ConfigProvider, Modal, Col, Row } from "antd";
 import { CollapsableSection } from "./subcomponents/subcomponents";
 
-const { SearchWidget, Brand, NavBar } = Components;
+const { TickerSearch, Brand, NavBar } = Components;
 export function Dashboard() {
   const { isDarkMode } = useContext(ThemeContext);
   const [ticker, setTicker] = useState("AMZN");
@@ -37,7 +37,7 @@ export function Dashboard() {
     <ConfigProvider theme={Theme.getAlgorithm(isDarkMode)}>
       <>
         <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
-          <SearchWidget
+          <TickerSearch
             ticker={ticker}
             isModalOpen={isModalOpen}
             searchRef={searchRef}

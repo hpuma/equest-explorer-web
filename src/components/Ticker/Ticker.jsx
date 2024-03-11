@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import EquestInstance from "../../api/equestserver";
 import { Card, Row } from "antd";
-import { tickerWidgetDef } from "./defaults";
+import { tickerDef } from "./defaults";
 import { CreateColumn } from "./subcomponent";
 
-export default function TickerWidget({ ticker }) {
-  const [quote, setTickerQuote] = useState(tickerWidgetDef);
+export default function Ticker({ ticker }) {
+  const [quote, setTickerQuote] = useState(tickerDef);
 
   useEffect(() => {
     const getData = async () => {
       const quoteData = await EquestInstance.getGlobalQuote(ticker);
 
-      if (quoteData.message) return setTickerQuote(tickerWidgetDef);
+      if (quoteData.message) return setTickerQuote(tickerDef);
       setTickerQuote(quoteData);
     };
     getData();

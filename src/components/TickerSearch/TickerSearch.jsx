@@ -4,7 +4,8 @@ import { AutoComplete, Input } from "antd";
 import { bestMatchesDataDef } from "./defaults";
 
 const { Search } = Input;
-export default function SearchWidget({ onSearch, ticker, searchRef }) {
+
+export default function TickerSearch({ onSearch, ticker, searchRef }) {
   const [bestMatchesData, setBestMatches] = useState(bestMatchesDataDef(ticker));
   const [options, setOptions] = useState(null);
 
