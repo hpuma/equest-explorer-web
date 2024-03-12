@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-import { formatLabel } from "../../../global/utils";
+import { formatLabel } from "../../global/utils";
 const newsSourceColorMap = {
   alphav: "green",
   news: "red",

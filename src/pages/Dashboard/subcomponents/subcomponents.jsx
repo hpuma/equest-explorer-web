@@ -4,10 +4,10 @@ import { Collapse, Typography } from "antd";
 import { ChartSection, getCollapseAttributes } from "./utils/utils";
 import "./subcomponents.css";
 
-const { TableWidget, ChartWidget, TickerWidget } = Components;
+const { NewsTable, Chart, Ticker } = Components;
 const { Title } = Typography;
 export function CollapsableSection({
-  widgets = "",
+  componentSize = "",
   ticker = "",
   isDarkMode = false,
   tickerDescription = ""
@@ -29,7 +29,7 @@ export function CollapsableSection({
     };
   }, [isResizing]);
 
-  const smallWidgets = [
+  const small = [
     {
       key: "0",
       label: (
@@ -37,41 +37,32 @@ export function CollapsableSection({
           {ticker} - {tickerDescription}
         </Title>
       ),
-      children: <TickerWidget ticker={ticker} />
+      children: <Ticker ticker={ticker} />
     }
   ];
-  const largeWidgets = [
+  const large = [
     {
       key: "1",
       label: "Chart",
-      children: <ChartWidget ticker={ticker} isDarkMode={isDarkMode} />
+      children: <Chart ticker={ticker} isDarkMode={isDarkMode} />
     },
     {
       key: "2",
       label: "Table",
       children: (
         <ChartSection
-          ticker={ticker}
           dividerPosition={dividerPosition}
-          setRecord={setRecord}
           setResizing={setResizing}
           record={record}
-          tableWidget={
-            <TableWidget
-              ticker={ticker}
-              key={ticker}
-              getTableRow={(newsRecord) => setRecord(newsRecord)}
-            />
+          newsTable={
+            <NewsTable ticker={ticker} getTableRow={(newsRecord) => setRecord(newsRecord)} />
           }
         />
       )
     }
   ];
 
-  const { items, size, defaultActiveKey } = getCollapseAttributes(widgets, [
-    smallWidgets,
-    largeWidgets
-  ]);
+  const { items, size, defaultActiveKey } = getCollapseAttributes(componentSize, [small, large]);
 
   return (
     <Collapse

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EquestInstance from "../../api/equestserver";
 import { Card, Row } from "antd";
-import { tickerDef } from "./defaults";
+import { tickerDef } from "../defaults";
 import { CreateColumn } from "./subcomponent";
 
 export default function Ticker({ ticker }) {

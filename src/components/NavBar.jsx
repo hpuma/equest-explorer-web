@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Menu, Switch } from "antd";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../index";
+import { ThemeContext } from "../index";
 
 export default function NavBar() {
   const [current, setCurrent] = useState("mail");

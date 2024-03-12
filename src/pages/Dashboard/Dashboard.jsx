@@ -37,29 +37,22 @@ export function Dashboard() {
     <ConfigProvider theme={Theme.getAlgorithm(isDarkMode)}>
       <>
         <Modal title="Symbol Search" open={isModalOpen} footer={null} onCancel={cancelModal}>
-          <TickerSearch
-            ticker={ticker}
-            isModalOpen={isModalOpen}
-            searchRef={searchRef}
-            onSearch={onSearch}
-          />
+          <TickerSearch onSearch={onSearch} ticker={ticker} searchRef={searchRef} />
         </Modal>
-        {/* Widgets */}
         <Row>
           <Col span={12}>
             <CollapsableSection
-              widgets={"small"}
+              componentSize={"small"}
               ticker={ticker}
               isDarkMode={isDarkMode}
               tickerDescription={tickerDescription}
             />
           </Col>
-
           <Col span={12}>
             <NavBar />
           </Col>
         </Row>
-        <CollapsableSection widgets={"large"} ticker={ticker} isDarkMode={isDarkMode} />
+        <CollapsableSection componentSize={"large"} ticker={ticker} isDarkMode={isDarkMode} />
       </>
     </ConfigProvider>
   );

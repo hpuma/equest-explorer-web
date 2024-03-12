@@ -1,7 +1,6 @@
 import React from "react";
-import Sentisys2 from "../../assets/Sentisys2.jpg";
-import Sentisys3 from "../../assets/Sentisys3.jpg";
-import "./Brand.css";
+import Sentisys2 from "../assets/Sentisys2.jpg";
+import Sentisys3 from "../assets/Sentisys3.jpg";
 
 export default function Brand({ isDarkMode }) {
   return (

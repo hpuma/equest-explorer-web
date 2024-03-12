@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import EquestInstance from "../../api/equestserver";
-import Config from "./utils/config";
+import Config from "./config";
 import { Table } from "antd";
-import { dataSourceDef } from "./utils/defaults";
+import { dataSourceDef } from "../defaults";
 import { v4 as uuidv4 } from "uuid";
-import "./NewsTable.css";
 
 export default function NewsTable({ ticker = "", getTableRow }) {
   const [dataSource, setDataSource] = useState(null);

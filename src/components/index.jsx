@@ -1,8 +1,8 @@
-import TickerSearch from "./TickerSearch/TickerSearch";
-import Brand from "./Brand/Brand";
-import NavBar from "./NavBar/NavBar";
+import Brand from "./Brand";
 import NewsTable from "./NewsTable/NewsTable";
-import Chart from "./Chart/Chart";
 import Ticker from "./Ticker/Ticker";
+import Chart from "./Chart";
+import NavBar from "./NavBar";
+import TickerSearch from "./TickerSearch";
 
-export default { TickerSearch, Brand, NavBar, NewsTable, Chart, Ticker };
+export default { Brand, NewsTable, Ticker, Chart, NavBar, TickerSearch };

@@ -28,12 +28,12 @@ export function NewsPreview({
   );
 }
 
-export function ChartSection({ dividerPosition, setResizing, record, tableWidget }) {
+export function ChartSection({ dividerPosition, setResizing, record, newsTable }) {
   const handleMouseDown = () => setResizing(true);
   return (
     <div className="resizable-container">
       <div className="component-left" style={{ width: `${dividerPosition}%` }}>
-        {tableWidget}
+        {newsTable}
       </div>
       <div className="resizable-divider" onMouseDown={handleMouseDown}>
         <div className="resizable-dots">
@@ -55,10 +55,10 @@ export function ChartSection({ dividerPosition, setResizing, record, tableWidget
   );
 }
 
-export function getCollapseAttributes(widgetType, widgets) {
+export function getCollapseAttributes(size, components) {
   return {
-    items: widgetType == "small" ? widgets[0] : widgets[1],
-    size: widgets == "small" ? "small" : "large",
-    defaultActiveKey: widgets == "small" ? ["0"] : ["2"]
+    items: size == "small" ? components[0] : components[1],
+    size: components == "small" ? "small" : "large",
+    defaultActiveKey: components == "small" ? ["0"] : ["2"]
   };
 }
