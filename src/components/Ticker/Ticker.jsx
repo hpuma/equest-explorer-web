@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import EquestInstance from "../../api/equestserver";
+import EquestInstance from "../../api/equest";
 import { Card, Row } from "antd";
 import { tickerDef } from "../defaults";
 import { CreateColumn } from "./subcomponent";

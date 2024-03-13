@@ -1,7 +1,7 @@
 import Axios from "axios";
 import config from "../../configs";
-const { localConfig } = config;
 
+const { localConfig } = config;
 export class EquestServer {
   constructor(configuration) {
     const { baseURL = "", equestApiKey = "" } = configuration;

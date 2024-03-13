@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import EquestInstance from "../../api/equestserver";
+import EquestInstance from "../../api/equest";
 import Config from "./config";
 import { Table } from "antd";
 import { dataSourceDef } from "../defaults";
